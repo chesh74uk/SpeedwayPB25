@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  away_rider_1: MyString
+  away_rider_2: MyString
+  away_rider_3: MyString
+  away_rider_4: MyString
+  away_rider_5: MyString
+  away_rider_6: MyString
+  away_rider_7: MyString
+
+two:
+  away_rider_1: MyString
+  away_rider_2: MyString
+  away_rider_3: MyString
+  away_rider_4: MyString
+  away_rider_5: MyString
+  away_rider_6: MyString
+  away_rider_7: MyString

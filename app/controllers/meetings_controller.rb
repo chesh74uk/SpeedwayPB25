@@ -49,6 +49,11 @@ class MeetingsController < ApplicationController
     @meeting = Meeting.find(params[:id])
   end
   def meeting_params
-    params.expect(meeting: [ :date, :home_team, :away_team, :gate_choice ])
+    params.expect(meeting: [ :date, :home_team, :away_team, :gate_choice,
+                             home_riders_attributes:
+      [:home_rider_1, :home_rider_2, :home_rider_3, :home_rider_4, :home_rider_5, :home_rider_6, :home_rider_7],
+                             away_riders_attributes:
+       [:away_rider_1, :away_rider_2, :away_rider_3, :away_rider_4, :away_rider_5, :away_rider_6, :away_rider_7]],
+    )
   end
 end

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "away_riders/new"
+  get "home_riders/new"
   resource :session
   resources :passwords, param: :token
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -13,5 +15,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "meetings#index"
-  resources :meetings
+  resources :meetings do
+    resources :home_riders
+    resources :away_riders
+  end
 end
