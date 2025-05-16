@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "heats/new"
   get "away_riders/new"
   get "home_riders/new"
   resource :session
@@ -18,5 +19,6 @@ Rails.application.routes.draw do
   resources :meetings do
     resources :home_riders
     resources :away_riders
+    resources :heats
   end
 end

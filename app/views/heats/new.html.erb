@@ -1,0 +1,121 @@
+
+<h3>Heat <%= @heat.heat_number %></h3>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="d-flex bd-highlight">
+      <div class="p-2 flex-fill bd-highlight">
+        <h5><%= @meeting.home_team %>: <%= home_score(@meeting) %></h5>
+      </div>
+      <div class="p-2 flex-fill bd-highlight">
+        <h5><%= @meeting.away_team %>: <%= away_score(@meeting) %></h5>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+<table class="table table-bordered table-sm text-center">
+  <tbody>
+  <tr>
+    <td class="red-gate"><%= get_red_gate(@heat.heat_number, @meeting.gate_choice) %></td>
+    <td class="blue-gate"><%= get_blue_gate(@heat.heat_number, @meeting.gate_choice) %></td>
+    <td class="white-gate"><%= get_white_gate(@heat.heat_number, @meeting.gate_choice) %></td>
+    <td class="yellow-gate"><%= get_yellow_gate(@heat.heat_number, @meeting.gate_choice) %></td>
+  </tr>
+  </tbody>
+</table>
+
+</div>
+
+<%= simple_form_for ([@meeting, @heat]), defaults: {label: false} do |f| %>
+  <%= f.hidden_field  :heat_number, value: @heat.heat_number %>
+  <%= f.input :heat_time, placeholder: 'Heat time' %>
+
+  <%= f.hidden_field :red_gate, value: get_red_gate(@heat.heat_number, @meeting.gate_choice)  %>
+
+  <div class="row">
+    <div class="col-9" >
+      <%= f.input :red_rider, collection: [[@home_riders.home_rider_1, @home_riders.home_rider_1],
+                                           [@home_riders.home_rider_2, @home_riders.home_rider_2],
+                                           [@home_riders.home_rider_3, @home_riders.home_rider_3],
+                                           [@home_riders.home_rider_4, @home_riders.home_rider_4],
+                                           [@home_riders.home_rider_5, @home_riders.home_rider_5],
+                                           [@home_riders.home_rider_6, @home_riders.home_rider_6],
+                                           [@home_riders.home_rider_7, @home_riders.home_rider_7]],
+                  selected: get_red_rider(@heat.heat_number, @meeting.id),
+                  input_html: {class: 'selectpicker'}%>
+    </div>
+    <div class="col" >
+      <%= f.input :red_score, collection: Heat::SCORE, input_html: {class: 'selectpicker'} %>
+    </div>
+  </div>
+
+  <%= f.hidden_field :blue_gate, value: get_blue_gate(@heat.heat_number, @meeting.gate_choice)  %>
+  <div class="row">
+    <div class="col-9" >
+      <%= f.input :blue_rider, collection: [[@home_riders.home_rider_1, @home_riders.home_rider_1],
+                                            [@home_riders.home_rider_2, @home_riders.home_rider_2],
+                                            [@home_riders.home_rider_3, @home_riders.home_rider_3],
+                                            [@home_riders.home_rider_4, @home_riders.home_rider_4],
+                                            [@home_riders.home_rider_5, @home_riders.home_rider_5],
+                                            [@home_riders.home_rider_6, @home_riders.home_rider_6],
+                                            [@home_riders.home_rider_7, @home_riders.home_rider_7]],
+                  selected: get_blue_rider(@heat.heat_number, @meeting.id),
+                  input_html: {class: 'selectpicker'} %>
+    </div>
+    <div class="col">
+      <%= f.input :blue_score, collection: Heat::SCORE %>
+    </div>
+  </div>
+
+  <%= f.hidden_field :white_gate, value: get_white_gate(@heat.heat_number, @meeting.gate_choice)  %>
+  <div class="row">
+    <div class="col-9" >
+      <%= f.input :white_rider, collection: [[@away_riders.away_rider_1, @away_riders.away_rider_1],
+                                             [@away_riders.away_rider_2, @away_riders.away_rider_2],
+                                             [@away_riders.away_rider_3, @away_riders.away_rider_3],
+                                             [@away_riders.away_rider_4, @away_riders.away_rider_4],
+                                             [@away_riders.away_rider_5, @away_riders.away_rider_5],
+                                             [@away_riders.away_rider_6, @away_riders.away_rider_6],
+                                             [@away_riders.away_rider_7, @away_riders.away_rider_7]],
+                  selected: get_white_rider(@heat.heat_number, @meeting.id),
+                  input_html: {class: 'selectpicker'} %>
+    </div>
+    <div class="col">
+      <%= f.input :white_score, collection: Heat::SCORE %>
+    </div>
+  </div>
+
+  <%= f.hidden_field :yellow_gate, value: get_yellow_gate(@heat.heat_number, @meeting.gate_choice)  %>
+  <div class="row">
+    <div class="col-9" >
+      <%= f.input :yellow_rider, collection: [[@away_riders.away_rider_1, @away_riders.away_rider_1],
+                                              [@away_riders.away_rider_2, @away_riders.away_rider_2],
+                                              [@away_riders.away_rider_3, @away_riders.away_rider_3],
+                                              [@away_riders.away_rider_4, @away_riders.away_rider_4],
+                                              [@away_riders.away_rider_5, @away_riders.away_rider_5],
+                                              [@away_riders.away_rider_6, @away_riders.away_rider_6],
+                                              [@away_riders.away_rider_7, @away_riders.away_rider_7]],
+                  selected: get_yellow_rider(@heat.heat_number, @meeting.id),
+                  input_html: {class: 'selectpicker'} %>
+    </div>
+    <div class="col">
+      <%= f.input :yellow_score, collection: Heat::SCORE %>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="d-flex bd-highlight">
+        <div class="p-2 flex-fill bd-highlight">
+          <%= f.button :submit, class: 'btn btn-sm btn-outline-success' %>
+        </div>
+        <div class="p-2 flex-fill bd-highlight">
+          <%= link_to "Return", meetings_path, class: "btn btn-sm btn-outline-info" %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_12_123300) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_13_142653) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -26,6 +26,27 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_12_123300) do
     t.datetime "updated_at", null: false
     t.bigint "meeting_id", null: false
     t.index ["meeting_id"], name: "index_away_riders_on_meeting_id"
+  end
+
+  create_table "heats", force: :cascade do |t|
+    t.integer "heat_number"
+    t.string "heat_time"
+    t.integer "red_gate"
+    t.integer "red_score"
+    t.string "red_rider"
+    t.integer "blue_gate"
+    t.integer "blue_score"
+    t.string "blue_rider"
+    t.integer "white_gate"
+    t.integer "white_score"
+    t.string "white_rider"
+    t.integer "yellow_gate"
+    t.integer "yellow_score"
+    t.string "yellow_rider"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "meeting_id", null: false
+    t.index ["meeting_id"], name: "index_heats_on_meeting_id"
   end
 
   create_table "home_riders", force: :cascade do |t|
@@ -76,6 +97,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_12_123300) do
   end
 
   add_foreign_key "away_riders", "meetings"
+  add_foreign_key "heats", "meetings"
   add_foreign_key "home_riders", "meetings"
   add_foreign_key "sessions", "users"
 end

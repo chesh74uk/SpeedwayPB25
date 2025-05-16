@@ -1,0 +1,39 @@
+// Place all the styles related to the heats controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+td.red-gate {
+  background-color: #ff9999;
+}
+
+td.blue-gate {
+  background-color: #80ccff;
+}
+
+td.white-gate {
+  background-color: FloralWhite;
+}
+
+td.yellow-gate {
+  background-color: #ffff80;
+}
+
+#heat_red_score {
+  background: #ff9999  !important;
+}
+#heat_red_rider {
+  background: #ff9999  !important;
+}
+#heat_blue_score {
+  background: #80ccff  !important;
+}
+#heat_blue_rider {
+  background: #80ccff  !important;
+}
+#heat_yellow_score {
+  background: #ffff80  !important;
+}
+#heat_yellow_rider {
+  background: #ffff80  !important;
+}
