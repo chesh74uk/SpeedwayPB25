@@ -17,7 +17,7 @@
   <hr>
   <div class="row">
     <div class="col-md-12">
-      <%= button_to meeting.date.strftime("%a %b %d"), method: :get, class: "btn btn-info btn-block" %>
+      <%= button_to meeting.date.strftime("%a %b %d"), stats_index_path, params: {meeting_id: meeting.id}, method: :get, class: "btn btn-info btn-block" %>
     </div>
   </div>
   <div class="row">
