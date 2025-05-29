@@ -17,8 +17,18 @@
   <hr>
   <div class="row">
     <div class="col-md-12">
+      <div class="d-flex bd-highlight">
+        <div class="p-2 flex-fill bd-highlight">
       <%= button_to meeting.date.strftime("%a %b %d"), stats_index_path, params: {meeting_id: meeting.id}, method: :get, class: "btn btn-info btn-block" %>
-    </div>
+        </div>
+        <div class="p-2 flex-fill bd-highlight">
+          <%= meeting.home_rider.nil? || meeting.away_rider.nil? ?
+                ("Create team first") :
+                ( button_to "Heats", new_meeting_heat_path(meeting), method: :get, class: "btn btn-sm btn-info btn-dark" ) %>
+
+        </div>
+        </div>
+      </div>
   </div>
   <div class="row">
     <div class="col-md-12">
@@ -49,13 +59,10 @@
           <% end %>
         </div>
         <div class="p-2 flex-fill bd-highlight">
-          <%= button_to 'Delete', meeting, method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: 'btn btn-sm btn-outline-secondary' %>
+          <%= button_to 'Delete', meeting, method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: 'btn btn-sm btn-outline-danger' %>
         </div>
       </div>
     </div>
   </div>
-  <%= meeting.home_rider.nil? || meeting.away_rider.nil? ?
-        ("Create team first") :
-        ( button_to "Heats", new_meeting_heat_path(meeting), method: :get, class: "btn btn-sm btn-info btn-dark" ) %>
 <% end %>
 
